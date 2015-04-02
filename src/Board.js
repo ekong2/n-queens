@@ -192,7 +192,7 @@
 
   });
 
-  window.makeEmptyMatrix = function(n) {
+  var makeEmptyMatrix = function(n) {
     return _(_.range(n)).map(function() {
       return _(_.range(n)).map(function() {
         return 0;
