@@ -53,9 +53,7 @@ window.countNRooksSolutions = function(n) {
   var board = new Board({'n': n});
   var solutionCount = 0;
   var used = [];
-  for (var j = 0; j < n; j++){
-    used[j] = 0;
-  }
+
   function decision(row, column){
     board.togglePiece(row, column);
     used[column] = 1;
@@ -129,9 +127,6 @@ window.countNQueensSolutions = function(n) {
   var solutionCount = 0;
   var board = new Board({'n': n});
   var used = [];
-  for (var i = 0; i < n; i++){
-    used[i] = 0;
-  }
 
   var decision = function(row, column) {
     board.togglePiece(row, column);
