@@ -20,7 +20,7 @@ window.findNRooksSolution = function(n) {
 
   var recurse = function(row, column){
     board.togglePiece(row,column);
-    if (board.hasAnyRowConflicts() || board.hasAnyColConflicts()){
+    if (board.hasAnyColConflicts()){
       board.togglePiece(row,column);
       return;
     }
@@ -55,7 +55,7 @@ window.countNRooksSolutions = function(n) {
 
   function decision(row, column){
     board.togglePiece(row, column);
-    if (board.hasAnyRowConflicts() || board.hasAnyColConflicts()) {
+    if (board.hasAnyColConflicts()) {
       board.togglePiece(row, column);
       return;
     }
@@ -127,7 +127,7 @@ window.countNQueensSolutions = function(n) {
 
   var decision = function(row, column) {
     board.togglePiece(row, column);
-    if (board.hasAnyRowConflicts() || board.hasAnyColConflicts() || board.hasAnyMajorDiagonalConflicts() || board.hasAnyMinorDiagonalConflicts()) {
+    if (board.hasAnyColConflicts() || board.hasAnyMajorDiagonalConflicts() || board.hasAnyMinorDiagonalConflicts()) {
       board.togglePiece(row,column);
       return;
     }
