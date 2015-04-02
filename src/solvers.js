@@ -52,7 +52,7 @@ window.findNRooksSolution = function(n) {
 window.countNRooksSolutions = function(n) {
   var board = new Board({'n': n});
   var solutionCount = 0;
-  var used = {};
+  var used = [];
   for (var j = 0; j < n; j++){
     used[j] = 0;
   }
@@ -128,22 +128,32 @@ window.countNQueensSolutions = function(n) {
   }
   var solutionCount = 0;
   var board = new Board({'n': n});
+  var used = [];
+  for (var i = 0; i < n; i++){
+    used[i] = 0;
+  }
 
   var decision = function(row, column) {
     board.togglePiece(row, column);
-    if (board.hasAnyColConflicts() || board.hasAnyMajorDiagonalConflicts() || board.hasAnyMinorDiagonalConflicts()) {
+    used[column] = 1;
+    if (board.hasAnyMajorDiagonalConflicts() || board.hasAnyMinorDiagonalConflicts()) {
       board.togglePiece(row,column);
+      used[column] = 0;
       return;
     }
     if (row === n - 1) {
       solutionCount++;
       board.togglePiece(row,column);
+      used[column] = 0;
       return;
     }
     for (var i = 0; i < n; i++) {
-      decision(row + 1, i);
+      if (!used[i]) {
+        decision(row + 1, i);
+      }
     }
     board.togglePiece(row,column);
+    used[column] = 0;
   };
 
   for (var i = 0; i < n; i++) {
